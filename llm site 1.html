@@ -12,6 +12,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_PT" />
     <meta name="theme-color" content="#ec5b13" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- Flag Icons CSS (cross-platform, funciona no Windows) -->
@@ -106,6 +107,135 @@
         nav a.active {
             color: #ec5b13;
             font-weight: 700;
+        }
+
+        /* === CORPUS SECTION === */
+        .corpus-stat-card {
+            background: linear-gradient(135deg, rgba(236, 91, 19, 0.08) 0%, rgba(197, 160, 89, 0.08) 100%);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .corpus-stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(197, 160, 89, 0.5);
+        }
+
+        .corpus-country-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.25rem;
+            padding: 1.75rem;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .corpus-country-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ec5b13, #c5a059);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+
+        .corpus-country-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .corpus-country-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .corpus-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(236, 91, 19, 0.15);
+            color: #ec5b13;
+            border: 1px solid rgba(236, 91, 19, 0.2);
+        }
+
+        .corpus-tag.gold {
+            background: rgba(197, 160, 89, 0.15);
+            color: #c5a059;
+            border-color: rgba(197, 160, 89, 0.3);
+        }
+
+        .corpus-tag.blue {
+            background: rgba(99, 179, 237, 0.15);
+            color: #63b3ed;
+            border-color: rgba(99, 179, 237, 0.2);
+        }
+
+        .corpus-tag.green {
+            background: rgba(72, 187, 120, 0.15);
+            color: #48bb78;
+            border-color: rgba(72, 187, 120, 0.2);
+        }
+
+        .corpus-category-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 0.4rem;
+        }
+
+        .corpus-category-pill .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #c5a059;
+            flex-shrink: 0;
+        }
+
+        .corpus-divider-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .corpus-divider-label::before,
+        .corpus-divider-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease both;
         }
     </style>
 </head>
@@ -292,8 +422,10 @@
                     </div>
                     <h3 class="font-serif-display text-2xl font-bold mb-4">Dados Lusófonos</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                        Dos Diários da República às transcrições de rádio comunitária, passando pelas festas populares e
-                        dialetos — a língua viva nos dados.
+                        Captámos o que se <em>fala nas ruas</em>, nos dialetos, no rádio ao vivo — transcrições reais de
+                        Angola, Cabo Verde, Moçambique. Legislação pan-lusófona, comentários do YouTube, parlamentos,
+                        etnografia, festas populares. Mais de <strong>230 fontes</strong> activas. O corpus vai muito
+                        além do que aqui se mostra.
                     </p>
                     <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
                 </a>

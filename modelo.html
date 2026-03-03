@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LusoLLM — Modelo Fundacional | NZINGA AI</title>
+    <title>NZINGA AI — Modelo de Linguagem Lusófono</title>
     <meta name="description"
-        content="LusoLLM: modelo de linguagem de 1.1B parâmetros para os 9 países da CPLP. Métricas, manifesto e roadmap." />
+        content="NZINGA AI: o primeiro modelo de linguagem construído para os 9 países da CPLP. Métricas, corpus e manifesto." />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
     <link
@@ -68,6 +69,8 @@
         <div
             class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         </div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-accent-gold/5 rounded-full blur-3xl pointer-events-none">
+        </div>
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
@@ -75,14 +78,24 @@
                 <span class="text-xs font-bold uppercase tracking-widest text-primary">v0.1-alpha · Em treino
                     activo</span>
             </div>
-            <h1 class="font-serif-display text-5xl md:text-7xl font-black mb-6 leading-tight">LusoLLM</h1>
-            <p class="text-xl text-slate-300 max-w-2xl leading-relaxed mb-8">O primeiro modelo de linguagem fundacional
-                construído especificamente para a língua portuguesa nos seus contextos africanos, asiáticos, brasileiros
-                e europeus.</p>
-            <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
-                class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity shadow-lg shadow-primary/30">
-                🤗 Ver no HuggingFace
-            </a>
+            <h1 class="font-serif-display text-5xl md:text-7xl font-black mb-4 leading-tight">NZINGA AI</h1>
+            <p class="text-accent-gold font-serif-display italic text-2xl md:text-3xl mb-6 max-w-2xl leading-snug">A
+                inteligência artificial que cresceu a ouvir o povo — nas ruas, nas rádios, nos parlamentos, nas redes.
+            </p>
+            <p class="text-lg text-slate-400 max-w-2xl leading-relaxed mb-10">O primeiro modelo de linguagem construído
+                com os dados dos 9 países da CPLP. Não foi treinado <em>sobre</em> a nossa língua — foi treinado
+                <em>dentro</em> dela. Com os nossos dialectos, as nossas leis, a nossa cultura.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="https://huggingface.co/DenioNG/LusoLLM-v1" target="_blank" rel="noopener"
+                    class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity shadow-lg shadow-primary/30">
+                    🤗 Ver no HuggingFace
+                </a>
+                <a href="#corpus"
+                    class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/20 transition-all">
+                    Ver o Corpus
+                </a>
+            </div>
         </div>
     </section>
 
@@ -90,18 +103,20 @@
     <section class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-6">O que é o
-                    LusoLLM?</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">O LusoLLM é um modelo de
-                    linguagem de <strong>1.1 bilhão de parâmetros</strong>, derivado do <code
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-6">O que é a
+                    NZINGA AI?</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">A NZINGA AI é um modelo de
+                    linguagem de <strong>1.1 bilhão de parâmetros</strong>, construído sobre o <code
                         class="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-sm">TucanoBR/Tucano-1b1</code> e
-                    fine-tunado com um corpus cuidadosamente curado de textos dos países da CPLP.</p>
-                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">Ao contrário dos modelos
-                    generalistas que tratam o português como uma língua monolítica, o LusoLLM reconhece e respeita as
-                    variantes regionais: desde o kimbundu angolano ao crioulo cabo-verdiano, passando pela linguagem
-                    jurídica portuguesa e o português brasileiro informal.</p>
-                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">O modelo é produzido com licença
-                    <strong>Apache 2.0</strong>, permitindo uso comercial, governamental e académico sem restrições.</p>
+                    treinado com um corpus que nunca existiu antes: a voz real, viva e diversa dos 9 países da CPLP.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">Os grandes modelos de
+                    linguagem tratam o português como uma língua monolítica — como se Angola soasse igual a Lisboa, como
+                    se o crioulo de Cabo Verde fosse um erro ortográfico. A NZINGA AI foi construída para <strong>acabar
+                        com esse apagamento</strong>. Cada variante regional, cada dialecto, cada sotaque — está aqui.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Licença <strong>Apache
+                        2.0</strong> — livre para governos, universidades, empresas e cidadãos. O conhecimento é nosso.
+                    E fica connosco.</p>
             </div>
             <div class="grid grid-cols-2 gap-6">
                 <div
@@ -128,33 +143,79 @@
         </div>
     </section>
 
-    <!-- CORPUS POR PAÍS -->
-    <section class="py-20 bg-slate-50 dark:bg-deep-charcoal/50">
+    <!-- BARRA DE IMPACTO -->
+    <section class="py-12 bg-deep-charcoal text-white">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="font-serif-display text-3xl font-black text-deep-charcoal dark:text-white mb-12 text-center">
-                Corpus por País</h2>
+            <p class="text-center text-slate-400 text-xs uppercase tracking-[0.2em] mb-8">O que recolhemos — Março 2026
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <p class="font-serif-display text-4xl font-black text-accent-gold">~25GB</p>
+                    <p class="text-slate-400 text-sm mt-1 uppercase tracking-wider">Dados Jurídicos</p>
+                    <p class="text-slate-600 text-xs mt-1">DRE + PALOP completo</p>
+                </div>
+                <div>
+                    <p class="font-serif-display text-4xl font-black text-white">1.001</p>
+                    <p class="text-slate-400 text-sm mt-1 uppercase tracking-wider">Vídeos YouTube</p>
+                    <p class="text-slate-600 text-xs mt-1">Comentários em JSON</p>
+                </div>
+                <div>
+                    <p class="font-serif-display text-4xl font-black text-primary">23</p>
+                    <p class="text-slate-400 text-sm mt-1 uppercase tracking-wider">Programas Transcritos</p>
+                    <p class="text-slate-600 text-xs mt-1">Rádio e TV ao vivo</p>
+                </div>
+                <div>
+                    <p class="font-serif-display text-4xl font-black text-white">230+</p>
+                    <p class="text-slate-400 text-sm mt-1 uppercase tracking-wider">Fontes Activas</p>
+                    <p class="text-slate-600 text-xs mt-1">Gov, ONU, Web, GitHub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORPUS POR PAÍS -->
+    <section id="corpus" class="py-20 bg-slate-50 dark:bg-deep-charcoal/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-3xl md:text-5xl font-black text-deep-charcoal dark:text-white mb-4">
+                    Uma Língua. Nove Países.<br><span class="text-primary italic">Um só Corpus.</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg">Fomos a cada país recolher a
+                    língua onde ela vive: nas leis, nas ruas, nas rádios, nos ecrãs, nos comentários. Isto não é uma
+                    amostra — é um retrato.</p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-ao" aria-label="Angola"></span>
                         <h3 class="font-bold text-lg">Angola</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Diário da República, jurisprudência, rádio comunitária, literatura
-                        Mukanda.</p>
+                    <p class="text-slate-500 text-sm">Diário da República, Legis-PALOP, literatura Mukanda. Programas de
+                        rádio e televisão transcritos com o povo a falar sobre corrupção, educação e dia-a-dia.
+                        <strong>Milhares de comentários do YouTube</strong> recolhidos via Bright Data. A voz real de
+                        Angola, em dados.
+                    </p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-br" aria-label="Brasil"></span>
                         <h3 class="font-bold text-lg">Brasil</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Legislação federal (LexML), Wikipedia PT-BR, GigaVerbo corpus.</p>
+                    <p class="text-slate-500 text-sm">Legislação federal completa (LexML, STF, DOU, Câmara),
+                        <strong>GigaVerbo</strong> (1.574 ficheiros), Wikipedia PT-BR, Portal da Transparência, Reddit
+                        lusófono e <strong>milhões de comentários do YouTube</strong>. Repositórios de código no GitHub
+                        em português. Maior volume do corpus — 215 milhões de falantes representados.
+                    </p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-cv" aria-label="Cabo Verde"></span>
                         <h3 class="font-bold text-lg">Cabo Verde</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Boletim Oficial, imprensa online, corpus de crioulo cabo-verdiano.
+                    <p class="text-slate-500 text-sm">Boletim Oficial, imprensa, corpus de crioulo cabo-verdiano.
+                        Programas de rádio e televisão ao vivo transcritos — jornais e entrevistas reais.
+                        <strong>Comentários do YouTube</strong> da diáspora em todo o mundo. A língua que atravessa o
+                        Atlântico.
                     </p>
                 </div>
                 <div
@@ -162,22 +223,32 @@
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-gw" aria-label="Guiné-Bissau"></span>
                         <h3 class="font-bold text-lg">Guiné-Bissau</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Legislação nacional, Legis-PALOP, textos educativos.</p>
+                    <p class="text-slate-500 text-sm">Legislação nacional, Legis-PALOP, BCD-CPLP, textos educativos
+                        bilingues. Programas de rádio transcritos. <strong>Comentários do YouTube</strong> recolhidos.
+                        Dados sintéticos SFT para o crioulo da Guiné. Um dos países menos representados na IA global —
+                        <strong>estamos a mudar isso</strong>.
+                    </p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-mz" aria-label="Moçambique"></span>
                         <h3 class="font-bold text-lg">Moçambique</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Boletim da República, jurisprudência, imprensa lusófona.</p>
+                    <p class="text-slate-500 text-sm">Boletim da República, Legis-PALOP, imprensa lusófona. Programas de
+                        televisão e rádio ao vivo sobre corrupção, justiça e vida urbana — transcritos com Whisper.
+                        <strong>Milhares de comentários do YouTube</strong> com o português do sul de África. Dados de
+                        transportes e administração municipal.
+                    </p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-pt" aria-label="Portugal"></span>
                         <h3 class="font-bold text-lg">Portugal</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">DRE — Diário da República Electrónico, jurisprudência dos
-                        tribunais, Wikipedia PT.</p>
+                    <p class="text-slate-500 text-sm"><strong>DRE na íntegra</strong> — ~12,6 GB, toda a legislação
+                        desde o século XIX. Parlamento, tribunais, Wikipedia PT (172 MB), <strong>comentários do
+                            YouTube</strong>, Reddit, GitHub e Eurostat. A espinha dorsal jurídica e académica do corpus
+                        lusófono.</p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
@@ -185,15 +256,19 @@
                             aria-label="São Tomé e Príncipe"></span>
                         <h3 class="font-bold text-lg">São Tomé e Príncipe</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Diário da República são-tomense, corpus Legis-PALOP.</p>
+                    <p class="text-slate-500 text-sm">Diário da República são-tomense, Legis-PALOP, rádio e imprensa
+                        locais. Comentários do YouTube recolhidos. Dados sintéticos SFT para o forro e o angolar. Um dos
+                        menores países do mundo — mas a sua língua tem lugar garantido neste modelo.</p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3 mb-4"><span class="fi fi-tl" aria-label="Timor-Leste"></span>
                         <h3 class="font-bold text-lg">Timor-Leste</h3>
                     </div>
-                    <p class="text-slate-500 text-sm">Jornal da República, textos educativos bilingues Tétum/Português.
-                    </p>
+                    <p class="text-slate-500 text-sm">Jornal da República e textos <strong>bilingues
+                            Tétum-Português</strong>. Corpus académico e etnográfico do único país asiático da CPLP.
+                        Comentários do YouTube recolhidos. Uma nação que escolheu o português como língua da sua
+                        soberania — e que agora tem voz num modelo de IA soberano.</p>
                 </div>
                 <div
                     class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
@@ -202,8 +277,9 @@
                         <h3 class="font-bold text-lg">Guiné Equatorial <span
                                 class="text-xs text-slate-400">(obs.)</span></h3>
                     </div>
-                    <p class="text-slate-500 text-sm">País observador da CPLP; dados legislativos incluídos
-                        parcialmente.</p>
+                    <p class="text-slate-500 text-sm">País observador da CPLP; dados legislativos via Legis-PALOP e
+                        BCD-CPLP incluídos parcialmente. A coexistência do português com o espanhol e o francês torna
+                        este corpus único para tarefas multilingues.</p>
                 </div>
             </div>
         </div>
@@ -242,7 +318,7 @@
                     </div>
                     <p class="text-slate-400 text-sm mb-4">Fine-tuning inicial com corpus jurídico (DRE, PALOP).
                         Validação interna.</p>
-                    <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
+                    <a href="https://huggingface.co/DenioNG/LusoLLM-v1" target="_blank" rel="noopener"
                         class="text-xs text-primary flex items-center gap-1 hover:underline">🤗 Disponível no
                         HuggingFace →</a>
                 </div>
