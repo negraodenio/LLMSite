@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NZINGA AI — Inteligência Artificial Soberana Lusófona</title>
+    <meta name="description"
+        content="NZINGA AI é a primeira inteligência artificial construída pelos e para os países lusófonos da CPLP. Baseada no LusoLLM, soberana, ética e enraizada na nossa língua." />
+    <meta property="og:title" content="NZINGA AI — Inteligência Soberana Lusófona" />
+    <meta property="og:description" content="A primeira IA construída pelos e para os 9 países lusófonos da CPLP." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta name="theme-color" content="#ec5b13" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Flag Icons CSS (cross-platform, funciona no Windows) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "accent-gold": "#c5a059",
+                        "deep-charcoal": "#1a1a1a",
+                        "background-light": "#fdfcfb",
+                        "background-dark": "#120d0b",
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #c5a059 0%, #8e6d31 100%);
+        }
+
+        /* Flag icons dimensionadas */
+        .fi {
+            font-size: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .fi:hover {
+            transform: translateY(-4px);
+        }
+
+        .fi-sm {
+            font-size: 1.5rem;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Toggle dark mode */
+        #theme-toggle {
+            cursor: pointer;
+        }
+
+        /* Métricas animadas */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .metric-card {
+            animation: countUp 0.6s ease both;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hamburger */
+        #mobile-menu {
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Subpage active link */
+        nav a.active {
+            color: #ec5b13;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+    <!-- ═══════════════════════════════ NAVEGAÇÃO ═══════════════════════════════ -->
+    <nav
+        class="sticky top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+
+            <!-- Logo -->
+            <a href="llm site 1.html" class="flex items-center gap-2 shrink-0">
+                <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">token</span>
+                <span
+                    class="font-serif-display text-2xl font-black tracking-tighter text-deep-charcoal dark:text-white">NZINGA
+                    AI</span>
+            </a>
+
+            <!-- Links desktop -->
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="modelo.html">Modelo</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors"
+                    href="arquitetura.html">Tecnologia</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="llm site 1.html#cplp">CPLP</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+            </div>
+
+            <!-- Ações direita -->
+            <div class="flex items-center gap-3">
+                <!-- Toggle dark/light -->
+                <button id="theme-toggle" aria-label="Alternar tema"
+                    class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-xl hidden dark:inline text-yellow-400">light_mode</span>
+                </button>
+
+                <a href="#contacto"
+                    class="bg-deep-charcoal dark:bg-white text-white dark:text-deep-charcoal px-6 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-opacity">
+                    Contactar
+                </a>
+
+                <!-- Hamburger mobile -->
+                <button id="menu-btn" aria-label="Menu" class="md:hidden w-10 h-10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu"
+            class="md:hidden hidden overflow-hidden border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark">
+            <div class="flex flex-col px-4 py-4 gap-4">
+                <a class="text-sm font-medium hover:text-primary" href="modelo.html">Modelo</a>
+                <a class="text-sm font-medium hover:text-primary" href="arquitetura.html">Tecnologia</a>
+                <a class="text-sm font-medium hover:text-primary" href="llm site 1.html#cplp">CPLP</a>
+                <a class="text-sm font-medium hover:text-primary" href="blog.html">Blog</a>
+                <a class="text-sm font-medium hover:text-primary" href="#contacto">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════════ -->
+    <section class="relative w-full min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Gradiente mais forte para não tapar o rosto -->
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-background-dark/95 via-background-dark/70 to-background-dark/20 z-10">
+            </div>
+            <img alt="Rainha Nzinga Mbande" class="w-full h-full object-cover object-center"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0F2wZ-0qoQsaNp65e3FGlFaE8mCtX6ym5p28rK2-8g-ky50qiYtnWlQchTAM0LjGLQ_ptJSZMqMg6Ak_uB1lgzg6ObiGTlmOGGi0KH7BXKe2LrNCOSg6qzuA43lh4-HfzPHaPRBkweJVQwPSUal1ObUNIxYfKTio0KS4V_Ed52KrC-vKDOaM7e8HC61PgpMcUJzUAxEkjpBPVajBiUCCj2pwJJPqy7JcOypgyFN5_zeAY5m-jqAG2emejwlu4r01LAhW2BIVRlzY" />
+        </div>
+        <div class="relative z-20 max-w-7xl mx-auto px-4 w-full py-24 lg:py-32">
+            <div class="max-w-2xl flex flex-col gap-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-primary">Inteligência Soberana</span>
+                </div>
+
+                <h1 class="font-serif-display text-6xl md:text-8xl text-white leading-[1.1] font-black">
+                    NZINGA AI
+                </h1>
+                <p
+                    class="text-xl md:text-2xl text-slate-300 font-light max-w-lg leading-relaxed border-l-2 border-accent-gold pl-6">
+                    A primeira inteligência artificial construída <span class="text-white font-semibold">pelos e para
+                        os</span> países lusófonos.
+                </p>
+
+                <!-- Botões -->
+                <div class="flex flex-wrap gap-4 mt-2">
+                    <a href="modelo.html"
+                        class="bg-primary text-white px-8 py-4 rounded-lg font-bold text-lg hover:-translate-y-0.5 transition-all shadow-xl shadow-primary/20">
+                        Conhecer o Modelo
+                    </a>
+                    <a href="arquitetura.html"
+                        class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/20 transition-all">
+                        Documentação Técnica
+                    </a>
+                </div>
+
+                <!-- Bandeiras – ABAIXO dos botões, sem texto sobreposto na hero -->
+                <div class="flex flex-wrap items-center gap-4 mt-6" id="cplp">
+                    <span class="text-sm font-medium text-slate-400 uppercase tracking-wider">Unidos por:</span>
+                    <div class="flex gap-3 flex-wrap">
+                        <span class="fi fi-ao" title="Angola" aria-label="Angola" role="img"></span>
+                        <span class="fi fi-br" title="Brasil" aria-label="Brasil" role="img"></span>
+                        <span class="fi fi-cv" title="Cabo Verde" aria-label="Cabo Verde" role="img"></span>
+                        <span class="fi fi-gw" title="Guiné-Bissau" aria-label="Guiné-Bissau" role="img"></span>
+                        <span class="fi fi-mz" title="Moçambique" aria-label="Moçambique" role="img"></span>
+                        <span class="fi fi-pt" title="Portugal" aria-label="Portugal" role="img"></span>
+                        <span class="fi fi-st" title="São Tomé e Príncipe" aria-label="São Tomé e Príncipe"
+                            role="img"></span>
+                        <span class="fi fi-tl" title="Timor-Leste" aria-label="Timor-Leste" role="img"></span>
+                        <span class="fi fi-gq" title="Guiné Equatorial (Observador)" aria-label="Guiné Equatorial"
+                            role="img"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ MÉTRICAS ════════════════════════════════ -->
+    <section class="py-16 bg-deep-charcoal">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="metric-card" style="animation-delay:0.0s">
+                    <p class="font-serif-display text-4xl md:text-5xl font-black text-white">1.1B</p>
+                    <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Parâmetros</p>
+                </div>
+                <div class="metric-card" style="animation-delay:0.1s">
+                    <p class="font-serif-display text-4xl md:text-5xl font-black text-accent-gold">9</p>
+                    <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Países CPLP</p>
+                </div>
+                <div class="metric-card" style="animation-delay:0.2s">
+                    <p class="font-serif-display text-4xl md:text-5xl font-black text-white">500M+</p>
+                    <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Tokens Lusófonos</p>
+                </div>
+                <div class="metric-card" style="animation-delay:0.3s">
+                    <p class="font-serif-display text-4xl md:text-5xl font-black text-primary">Apache</p>
+                    <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Licença 2.0</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ MISSÃO ══════════════════════════════════ -->
+    <section class="py-24 bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-2xl">
+                    <h2
+                        class="font-serif-display text-4xl md:text-5xl font-black text-deep-charcoal dark:text-white mb-6">
+                        Nossa Missão</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        A Nzinga AI nasce para construir a infraestrutura de inteligência artificial que o mundo
+                        lusófono merece. Soberana, ética e profundamente enraizada na nossa história.
+                    </p>
+                </div>
+                <a href="modelo.html#manifesto" class="flex items-center gap-2 text-primary font-bold shrink-0">
+                    <span class="text-sm uppercase tracking-tighter">Manifesto completo</span>
+                    <span class="material-symbols-outlined">arrow_right_alt</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="modelo.html"
+                    class="group p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-accent-gold dark:hover:border-accent-gold transition-all duration-500 shadow-sm">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">psychology</span>
+                    </div>
+                    <h3 class="font-serif-display text-2xl font-bold mb-4">LusoLLM</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Modelo fundacional de 1.1B de parâmetros, treinado com dados jurídicos, culturais e populares de
+                        todos os 9 países da CPLP.
+                    </p>
+                    <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
+                </a>
+                <a href="arquitetura.html#dados"
+                    class="group p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-accent-gold dark:hover:border-accent-gold transition-all duration-500 shadow-sm">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">language</span>
+                    </div>
+                    <h3 class="font-serif-display text-2xl font-bold mb-4">Dados Lusófonos</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Dos Diários da República às transcrições de rádio comunitária, passando pelas festas populares e
+                        dialetos — a língua viva nos dados.
+                    </p>
+                    <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
+                </a>
+                <a href="etica.html"
+                    class="group p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-accent-gold dark:hover:border-accent-gold transition-all duration-500 shadow-sm">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">gavel</span>
+                    </div>
+                    <h3 class="font-serif-display text-2xl font-bold mb-4">Soberania Digital</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Infraestrutura descentralizada e auditável. Os dados ficam nos países de origem, ao abrigo das
+                        respetivas leis de proteção de dados.
+                    </p>
+                    <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ TECNOLOGIA ══════════════════════════════ -->
+    <section class="py-24 bg-deep-charcoal text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div
+                        class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none">
+                    </div>
+                    <h2 class="font-serif-display text-4xl md:text-6xl font-black mb-8 leading-tight">
+                        Arquitetura <span class="text-accent-gold italic">Nzinga</span>
+                    </h2>
+                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                        Inspirada na resiliência e diplomacia da Rainha Nzinga Mbande, a nossa arquitetura combina
+                        fine-tuning eficiente (QLoRA) com curadoria de dados manual. O resultado é um modelo pequeno,
+                        rápido e profundamente contextualizado para a realidade lusófona.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-accent-gold shrink-0">check_circle</span>
+                            <span>Base: <code
+                                    class="font-mono text-sm bg-slate-800 px-2 py-1 rounded">TucanoBR/Tucano-1b1</code>
+                                fine-tunado com dados dos PALOP e Portugal</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-accent-gold shrink-0">check_circle</span>
+                            <span>Contexto: 2048 tokens — otimizado para interações diretas e suporte a documentos
+                                curtos</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-accent-gold shrink-0">check_circle</span>
+                            <span>Licença: Apache 2.0 — livre para uso comercial e governamental</span>
+                        </li>
+                    </ul>
+                    <a href="arquitetura.html"
+                        class="inline-block bg-gold-gradient text-white px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform">
+                        Explorar a Arquitetura
+                    </a>
+                </div>
+                <div class="relative flex justify-center">
+                    <div
+                        class="w-full aspect-square max-w-md bg-slate-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl rotate-3">
+                        <img alt="Arquitetura de Rede Neural" class="w-full h-full object-cover mix-blend-overlay"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtkaamrSU15MLVEykxWZS2vZxJdC88rEsbUBeBM1wO6K4l4BVBWReHsnKngrT4ygk8I0rzjDzqsvA8Uc2RyMDyFnDonrzENaUFzGQ9Me7Qc9nGaM-xM-XEsyYP2Q2WlL9UI6ZByOGbdZVnZDrLBYtErGLgSibzNjZ0kUKJTczRx0jS0qPLZSIUW9t7VxDWm-CcLPslHzAvtdEpGc3casdhBC_1fy2zA6QtqH_RG5yAedUyVUdizLhZUX7IPiHS_eJ60hjV-kicUvo" />
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-9xl text-accent-gold/40">api</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CONTACTO ════════════════════════════════ -->
+    <section id="contacto" class="py-24 bg-background-light dark:bg-background-dark">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="font-serif-display text-4xl md:text-5xl font-black text-deep-charcoal dark:text-white mb-4">Fale
+                Connosco</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-12 text-lg">Parcerias institucionais, investigação académica
+                ou simplesmente curiosidade — estamos aqui.</p>
+            <form
+                class="bg-white dark:bg-deep-charcoal rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-8 md:p-12 text-left"
+                onsubmit="handleContact(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2" for="nome">Nome</label>
+                        <input id="nome" type="text" required placeholder="O seu nome"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2" for="email">Email</label>
+                        <input id="email" type="email" required placeholder="email@exemplo.com"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition" />
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2" for="assunto">Assunto</label>
+                    <select id="assunto"
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition">
+                        <option>Parceria Institucional</option>
+                        <option>Colaboração Académica</option>
+                        <option>Imprensa</option>
+                        <option>Questão Técnica</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+                <div class="mb-8">
+                    <label class="block text-sm font-semibold mb-2" for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" rows="5" required placeholder="Descreva brevemente o seu interesse..."
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition resize-none"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary text-white py-4 rounded-lg font-bold text-lg hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-primary/20">
+                    Enviar Mensagem
+                </button>
+                <p id="form-success" class="hidden text-green-600 text-center mt-4 font-semibold">✓ Mensagem recebida!
+                    Respondemos em breve.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ FOOTER ══════════════════════════════════ -->
+    <footer class="bg-background-light dark:bg-background-dark py-20 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Bandeiras no rodapé -->
+            <div
+                class="flex flex-wrap justify-center items-center gap-5 mb-16 py-6 border-y border-slate-200 dark:border-slate-800">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">OS 9 DA CPLP</span>
+                <span class="fi fi-sm fi-ao" title="Angola" aria-label="Angola" role="img"></span>
+                <span class="fi fi-sm fi-br" title="Brasil" aria-label="Brasil" role="img"></span>
+                <span class="fi fi-sm fi-cv" title="Cabo Verde" aria-label="Cabo Verde" role="img"></span>
+                <span class="fi fi-sm fi-gw" title="Guiné-Bissau" aria-label="Guiné-Bissau" role="img"></span>
+                <span class="fi fi-sm fi-mz" title="Moçambique" aria-label="Moçambique" role="img"></span>
+                <span class="fi fi-sm fi-pt" title="Portugal" aria-label="Portugal" role="img"></span>
+                <span class="fi fi-sm fi-st" title="São Tomé e Príncipe" aria-label="São Tomé e Príncipe"
+                    role="img"></span>
+                <span class="fi fi-sm fi-tl" title="Timor-Leste" aria-label="Timor-Leste" role="img"></span>
+                <span class="fi fi-sm fi-gq" title="Guiné Equatorial" aria-label="Guiné Equatorial" role="img"></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                        <span class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white">NZINGA
+                            AI</span>
+                    </div>
+                    <p class="text-slate-500 max-w-xs mb-8">
+                        Construindo a inteligência artificial que fala a nossa língua, respeita a nossa história e
+                        fortalece a nossa soberania.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub"
+                            class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-sm">code</span>
+                        </a>
+                        <a href="mailto:contacto@nzinga.ai" aria-label="Email"
+                            class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-sm">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 text-deep-charcoal dark:text-white uppercase text-xs tracking-[0.2em]">
+                        RECURSOS</h4>
+                    <ul class="space-y-4 text-slate-500 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="modelo.html">Modelo LusoLLM</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="arquitetura.html">Arquitetura</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Blog de Engenharia</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="imprensa.html">Imprensa</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 text-deep-charcoal dark:text-white uppercase text-xs tracking-[0.2em]">
+                        LEGAL</h4>
+                    <ul class="space-y-4 text-slate-500 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="privacidade.html">Privacidade</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="termos.html">Termos de Uso</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="etica.html">Ética de Dados</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="licencas.html">Licenças</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-400 text-xs">© 2026 NZINGA AI. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs text-slate-400 font-medium">Datacenters: Luanda · Lisboa · Maputo · Brasília ·
+                        Cidade da Praia</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════ SCRIPTS ══════════════════════════════════ -->
+    <script>
+        // Dark / Light mode toggle
+        const html = document.documentElement;
+        const btn = document.getElementById('theme-toggle');
+        btn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        // Persistir preferência
+        if (localStorage.getItem('theme') === 'dark' ||
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Formulário de contacto
+        function handleContact(e) {
+            e.preventDefault();
+            document.getElementById('form-success').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => document.getElementById('form-success').classList.add('hidden'), 5000);
+        }
+    </script>
+</body>
+
+</html>

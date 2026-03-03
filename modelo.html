@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LusoLLM — Modelo Fundacional | NZINGA AI</title>
+    <meta name="description"
+        content="LusoLLM: modelo de linguagem de 1.1B parâmetros para os 9 países da CPLP. Métricas, manifesto e roadmap." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#ec5b13", "accent-gold": "#c5a059", "deep-charcoal": "#1a1a1a", "background-light": "#fdfcfb", "background-dark": "#120d0b" }, fontFamily: { display: ["Playfair Display", "serif"], sans: ["Inter", "sans-serif"] } } } }</script>
+    <style>
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fi {
+            font-size: 1.25rem;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+    <!-- NAV -->
+    <nav
+        class="sticky top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                <span
+                    class="font-serif-display text-2xl font-black tracking-tighter text-deep-charcoal dark:text-white">NZINGA
+                    AI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium text-primary font-bold" href="modelo.html">Modelo</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors"
+                    href="arquitetura.html">Tecnologia</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#cplp">CPLP</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Alternar tema"
+                    class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-xl hidden dark:inline text-yellow-400">light_mode</span>
+                </button>
+                <a href="index.html#contacto"
+                    class="bg-deep-charcoal dark:bg-white text-white dark:text-deep-charcoal px-6 py-2 rounded-full text-sm font-bold hover:opacity-90">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="py-24 bg-deep-charcoal text-white relative overflow-hidden">
+        <div
+            class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="text-xs font-bold uppercase tracking-widest text-primary">v0.1-alpha · Em treino
+                    activo</span>
+            </div>
+            <h1 class="font-serif-display text-5xl md:text-7xl font-black mb-6 leading-tight">LusoLLM</h1>
+            <p class="text-xl text-slate-300 max-w-2xl leading-relaxed mb-8">O primeiro modelo de linguagem fundacional
+                construído especificamente para a língua portuguesa nos seus contextos africanos, asiáticos, brasileiros
+                e europeus.</p>
+            <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
+                class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity shadow-lg shadow-primary/30">
+                🤗 Ver no HuggingFace
+            </a>
+        </div>
+    </section>
+
+    <!-- VISÃO GERAL -->
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div>
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-6">O que é o
+                    LusoLLM?</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">O LusoLLM é um modelo de
+                    linguagem de <strong>1.1 bilhão de parâmetros</strong>, derivado do <code
+                        class="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-sm">TucanoBR/Tucano-1b1</code> e
+                    fine-tunado com um corpus cuidadosamente curado de textos dos países da CPLP.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">Ao contrário dos modelos
+                    generalistas que tratam o português como uma língua monolítica, o LusoLLM reconhece e respeita as
+                    variantes regionais: desde o kimbundu angolano ao crioulo cabo-verdiano, passando pela linguagem
+                    jurídica portuguesa e o português brasileiro informal.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">O modelo é produzido com licença
+                    <strong>Apache 2.0</strong>, permitindo uso comercial, governamental e académico sem restrições.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 shadow-sm text-center">
+                    <p class="font-serif-display text-4xl font-black text-primary mb-2">1.1B</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-wider">Parâmetros</p>
+                </div>
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 shadow-sm text-center">
+                    <p class="font-serif-display text-4xl font-black text-accent-gold mb-2">500M+</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-wider">Tokens treino</p>
+                </div>
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 shadow-sm text-center">
+                    <p class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-2">2048</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-wider">Tokens contexto</p>
+                </div>
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 shadow-sm text-center">
+                    <p class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-2">9</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-wider">Países CPLP</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORPUS POR PAÍS -->
+    <section class="py-20 bg-slate-50 dark:bg-deep-charcoal/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-serif-display text-3xl font-black text-deep-charcoal dark:text-white mb-12 text-center">
+                Corpus por País</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-ao" aria-label="Angola"></span>
+                        <h3 class="font-bold text-lg">Angola</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Diário da República, jurisprudência, rádio comunitária, literatura
+                        Mukanda.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-br" aria-label="Brasil"></span>
+                        <h3 class="font-bold text-lg">Brasil</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Legislação federal (LexML), Wikipedia PT-BR, GigaVerbo corpus.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-cv" aria-label="Cabo Verde"></span>
+                        <h3 class="font-bold text-lg">Cabo Verde</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Boletim Oficial, imprensa online, corpus de crioulo cabo-verdiano.
+                    </p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-gw" aria-label="Guiné-Bissau"></span>
+                        <h3 class="font-bold text-lg">Guiné-Bissau</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Legislação nacional, Legis-PALOP, textos educativos.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-mz" aria-label="Moçambique"></span>
+                        <h3 class="font-bold text-lg">Moçambique</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Boletim da República, jurisprudência, imprensa lusófona.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-pt" aria-label="Portugal"></span>
+                        <h3 class="font-bold text-lg">Portugal</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">DRE — Diário da República Electrónico, jurisprudência dos
+                        tribunais, Wikipedia PT.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-st"
+                            aria-label="São Tomé e Príncipe"></span>
+                        <h3 class="font-bold text-lg">São Tomé e Príncipe</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Diário da República são-tomense, corpus Legis-PALOP.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-tl" aria-label="Timor-Leste"></span>
+                        <h3 class="font-bold text-lg">Timor-Leste</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">Jornal da República, textos educativos bilingues Tétum/Português.
+                    </p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4"><span class="fi fi-gq"
+                            aria-label="Guiné Equatorial"></span>
+                        <h3 class="font-bold text-lg">Guiné Equatorial <span
+                                class="text-xs text-slate-400">(obs.)</span></h3>
+                    </div>
+                    <p class="text-slate-500 text-sm">País observador da CPLP; dados legislativos incluídos
+                        parcialmente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section id="manifesto" class="py-20 bg-background-light dark:bg-background-dark">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-8 text-center">
+                Manifesto</h2>
+            <div class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed space-y-6">
+                <p>A língua portuguesa é falada por mais de 260 milhões de pessoas em 4 continentes. É a 5.ª língua mais
+                    falada no mundo. E no entanto, os sistemas de inteligência artificial disponíveis hoje tratam-na
+                    como uma língua de segunda classe — um dialeto do inglês, sem história, sem sotaque, sem alma.</p>
+                <p>A NZINGA AI nasce para mudar isso. Não como produto de consumo, mas como infraestrutura soberana. O
+                    LusoLLM não é um modelo construído <em>sobre</em> a lusofonia — é construído <em>dentro</em> dela.
+                </p>
+                <p>O nome Nzinga não é por acaso. A Rainha Nzinga Mbande foi a primeira governante africana a enfrentar
+                    o colonialismo com diplomacia, inteligência e determinação. O nosso projecto herda o mesmo espírito:
+                    recusar a dependência tecnológica, construir com os nossos recursos, nas nossas línguas.</p>
+                <p class="italic border-l-4 border-accent-gold pl-6 text-slate-800 dark:text-slate-200">Soberana na
+                    origem. Livre na licença. Enraizada na cultura.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="py-16 bg-deep-charcoal text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-serif-display text-3xl font-black mb-10 text-center">Roadmap de Versões</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl bg-slate-800 border border-primary/40">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-mono text-primary font-bold text-lg">v0.1-alpha</span>
+                        <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">Em curso</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-4">Fine-tuning inicial com corpus jurídico (DRE, PALOP).
+                        Validação interna.</p>
+                    <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
+                        class="text-xs text-primary flex items-center gap-1 hover:underline">🤗 Disponível no
+                        HuggingFace →</a>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-mono text-slate-300 font-bold text-lg">v0.5-beta</span>
+                        <span class="text-xs bg-slate-700 text-slate-400 px-2 py-1 rounded-full">Q3 2026</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Expansão do corpus cultural. Benchmark público em tarefas
+                        lusófonas.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-mono text-slate-300 font-bold text-lg">v1.0</span>
+                        <span class="text-xs bg-slate-700 text-slate-400 px-2 py-1 rounded-full">Q1 2027</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Lançamento público. API. Suporte RAG. Integração com sistemas
+                        governamentais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-background-light dark:bg-background-dark py-10 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-400 text-xs">© 2026 NZINGA AI. Todos os direitos reservados.</p>
+            <div class="flex gap-6 text-xs text-slate-500">
+                <a href="privacidade.html" class="hover:text-primary">Privacidade</a>
+                <a href="termos.html" class="hover:text-primary">Termos</a>
+                <a href="licencas.html" class="hover:text-primary">Licenças</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const h = document.documentElement;
+        document.getElementById('theme-toggle').addEventListener('click', () => { h.classList.toggle('dark'); localStorage.setItem('theme', h.classList.contains('dark') ? 'dark' : 'light'); });
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { h.classList.add('dark'); }
+    </script>
+</body>
+
+</html>

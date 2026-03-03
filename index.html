@@ -1,0 +1,807 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NZINGA AI — Inteligência Artificial Soberana Lusófona</title>
+    <meta name="description"
+        content="NZINGA AI é a primeira IA construída pelos e para os 9 países lusófonos da CPLP. LusoLLM, soberana, ética e enraizada na nossa língua." />
+    <meta property="og:title" content="NZINGA AI — Inteligência Soberana Lusófona" />
+    <meta property="og:description" content="A primeira IA construída pelos e para os 9 países lusófonos da CPLP." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#ec5b13" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#ec5b13", "accent-gold": "#c5a059", "deep-charcoal": "#1a1a1a", "background-light": "#fdfcfb", "background-dark": "#120d0b" }, fontFamily: { display: ["Playfair Display", "serif"], sans: ["Inter", "sans-serif"] } } } }</script>
+    <style>
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #c5a059 0%, #8e6d31 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll progress */
+        #scroll-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #ec5b13;
+            z-index: 9999;
+            width: 0%;
+            transition: width .1s linear;
+        }
+
+        /* Fade-in animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Flag sizes */
+        .fi {
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+            transition: transform .2s ease;
+            display: inline-block;
+        }
+
+        .fi:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Chat typing cursor */
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0
+            }
+        }
+
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Playground */
+        .chat-bubble-user {
+            background: #ec5b13;
+            color: #fff;
+            border-radius: 18px 18px 4px 18px;
+            padding: 10px 16px;
+            max-width: 80%;
+            margin-left: auto;
+            font-size: .92rem;
+        }
+
+        .chat-bubble-ai {
+            background: #f1f5f9;
+            color: #1e293b;
+            border-radius: 18px 18px 18px 4px;
+            padding: 10px 16px;
+            max-width: 85%;
+            font-size: .92rem;
+        }
+
+        .dark .chat-bubble-ai {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-bar"></div>
+
+    <!-- Alert Banner -->
+    <div id="alert-banner"
+        class="bg-primary text-white text-center text-xs py-2 px-4 flex items-center justify-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-white animate-pulse inline-block"></span>
+        <span>🎉 LusoLLM v0.1-alpha disponível —</span>
+        <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
+            class="underline font-bold hover:text-white/80">Ver no HuggingFace →</a>
+        <button onclick="document.getElementById('alert-banner').remove()"
+            class="ml-4 opacity-70 hover:opacity-100 text-lg leading-none">&times;</button>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar"
+        class="sticky top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                <span
+                    class="font-serif-display text-2xl font-black tracking-tighter text-deep-charcoal dark:text-white">NZINGA
+                    AI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="modelo.html">Modelo</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors"
+                    href="arquitetura.html">Tecnologia</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#cplp">CPLP</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Alternar tema"
+                    class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-xl hidden dark:inline text-yellow-400">light_mode</span>
+                </button>
+                <a href="#contacto"
+                    class="bg-deep-charcoal dark:bg-white text-white dark:text-deep-charcoal px-6 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-opacity">Contactar</a>
+                <button id="menu-btn" aria-label="Menu" class="md:hidden w-10 h-10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu"
+            class="md:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark px-4 py-4 flex flex-col gap-4">
+            <a class="text-sm font-medium" href="modelo.html">Modelo</a>
+            <a class="text-sm font-medium" href="arquitetura.html">Tecnologia</a>
+            <a class="text-sm font-medium" href="#cplp">CPLP</a>
+            <a class="text-sm font-medium" href="blog.html">Blog</a>
+            <a class="text-sm font-medium" href="#contacto">Contactar</a>
+        </div>
+    </nav>
+
+    <!-- HERO — sem bandeiras, gradiente só à esquerda para preservar o rosto -->
+    <section class="relative w-full min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-background-dark/95 via-background-dark/65 to-transparent z-10">
+            </div>
+            <img alt="Rainha Nzinga Mbande" class="w-full h-full object-cover object-[70%_center]"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0F2wZ-0qoQsaNp65e3FGlFaE8mCtX6ym5p28rK2-8g-ky50qiYtnWlQchTAM0LjGLQ_ptJSZMqMg6Ak_uB1lgzg6ObiGTlmOGGi0KH7BXKe2LrNCOSg6qzuA43lh4-HfzPHaPRBkweJVQwPSUal1ObUNIxYfKTio0KS4V_Ed52KrC-vKDOaM7e8HC61PgpMcUJzUAxEkjpBPVajBiUCCj2pwJJPqy7JcOypgyFN5_zeAY5m-jqAG2emejwlu4r01LAhW2BIVRlzY" />
+        </div>
+        <div class="relative z-20 max-w-7xl mx-auto px-4 w-full py-24">
+            <div class="max-w-xl flex flex-col gap-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-primary">Inteligência Soberana</span>
+                </div>
+                <h1 class="font-serif-display text-6xl md:text-8xl text-white leading-[1.05] font-black">NZINGA AI</h1>
+                <p
+                    class="text-xl md:text-2xl text-slate-300 font-light leading-relaxed border-l-2 border-accent-gold pl-6">
+                    A primeira inteligência artificial construída <span class="text-white font-semibold">pelos e para
+                        os</span> países lusófonos.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-2">
+                    <a href="modelo.html"
+                        class="bg-primary text-white px-8 py-4 rounded-lg font-bold text-lg hover:-translate-y-0.5 transition-all shadow-xl shadow-primary/20">Conhecer
+                        o Modelo</a>
+                    <a href="arquitetura.html"
+                        class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/20 transition-all">Documentação
+                        Técnica</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÉTRICAS -->
+    <section class="py-16 bg-deep-charcoal reveal">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <p class="font-serif-display text-4xl md:text-5xl font-black text-white">1.1B</p>
+                <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Parâmetros</p>
+            </div>
+            <div>
+                <p class="font-serif-display text-4xl md:text-5xl font-black text-accent-gold">9</p>
+                <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Países CPLP</p>
+            </div>
+            <div>
+                <p class="font-serif-display text-4xl md:text-5xl font-black text-white">500M+</p>
+                <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Tokens lusófonos</p>
+            </div>
+            <div>
+                <p class="font-serif-display text-4xl md:text-5xl font-black text-primary">Apache</p>
+                <p class="text-slate-400 text-sm mt-2 uppercase tracking-wider">Licença 2.0</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSÃO -->
+    <section class="py-24 bg-background-light dark:bg-background-dark reveal">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-2xl">
+                    <h2
+                        class="font-serif-display text-4xl md:text-5xl font-black text-deep-charcoal dark:text-white mb-6">
+                        Nossa Missão</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">A Nzinga AI nasce para
+                        construir a infraestrutura de inteligência artificial que o mundo lusófono merece. Soberana,
+                        ética e profundamente enraizada na nossa história.</p>
+                </div>
+                <a href="modelo.html#manifesto" class="flex items-center gap-2 text-primary font-bold shrink-0">
+                    <span class="text-sm uppercase tracking-tighter">Manifesto completo</span>
+                    <span class="material-symbols-outlined">arrow_right_alt</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="modelo.html"
+                    class="group p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-accent-gold transition-all duration-500 shadow-sm">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">psychology</span>
+                    </div>
+                    <h3 class="font-serif-display text-2xl font-bold mb-4">LusoLLM</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Modelo fundacional de 1.1B
+                        parâmetros, treinado com dados jurídicos, culturais e populares de todos os 9 países da CPLP.
+                    </p>
+                    <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
+                </a>
+                <a href="arquitetura.html#dados"
+                    class="group p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-accent-gold transition-all duration-500 shadow-sm">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">language</span>
+                    </div>
+                    <h3 class="font-serif-display text-2xl font-bold mb-4">Dados Lusófonos</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Dos Diários da República às
+                        transcrições de rádio comunitária — a língua viva nos dados.</p>
+                    <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
+                </a>
+                <a href="etica.html"
+                    class="group p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-accent-gold transition-all duration-500 shadow-sm">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">gavel</span>
+                    </div>
+                    <h3 class="font-serif-display text-2xl font-bold mb-4">Soberania Digital</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Infraestrutura descentralizada.
+                        Os dados ficam nos países de origem, ao abrigo das respetivas leis.</p>
+                    <div class="h-1 w-12 bg-accent-gold rounded-full"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="py-24 bg-slate-50 dark:bg-deep-charcoal/50 reveal">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-primary">Demo Interativa</span>
+                </div>
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-3">Experimente o
+                    LusoLLM</h2>
+                <p class="text-slate-500">Escolha uma pergunta e veja como o modelo responde com contexto lusófono.</p>
+            </div>
+            <div
+                class="bg-white dark:bg-deep-charcoal rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden">
+                <!-- Chat header -->
+                <div
+                    class="flex items-center gap-3 px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                    <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-400"></span><span
+                            class="w-3 h-3 rounded-full bg-yellow-400"></span><span
+                            class="w-3 h-3 rounded-full bg-green-400"></span></div>
+                    <span class="text-xs text-slate-400 font-mono">LusoLLM v0.1-alpha · playground</span>
+                    <span
+                        class="ml-auto text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">Demo</span>
+                </div>
+                <!-- Chat messages -->
+                <div id="chat-box" class="p-6 space-y-4 min-h-[240px] max-h-[340px] overflow-y-auto">
+                    <div class="flex justify-start">
+                        <div class="chat-bubble-ai">Olá! Sou o LusoLLM. Faça-me uma pergunta sobre direito, cultura ou
+                            história lusófona. 🌍</div>
+                    </div>
+                </div>
+                <!-- Preset questions -->
+                <div class="px-6 pb-4">
+                    <p class="text-xs text-slate-400 mb-3 uppercase tracking-wider">Sugestões rápidas:</p>
+                    <div class="flex flex-wrap gap-2" id="presets">
+                        <button onclick="askPreset(0)"
+                            class="preset-btn text-xs px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700 hover:border-primary hover:text-primary transition-all">O
+                            que é o Diário da República?</button>
+                        <button onclick="askPreset(1)"
+                            class="preset-btn text-xs px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700 hover:border-primary hover:text-primary transition-all">Quem
+                            foi a Rainha Nzinga?</button>
+                        <button onclick="askPreset(2)"
+                            class="preset-btn text-xs px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700 hover:border-primary hover:text-primary transition-all">Explica
+                            o crioulo cabo-verdiano.</button>
+                        <button onclick="askPreset(3)"
+                            class="preset-btn text-xs px-3 py-2 rounded-full border border-slate-200 dark:border-slate-700 hover:border-primary hover:text-primary transition-all">O
+                            que é a CPLP?</button>
+                    </div>
+                </div>
+                <!-- Input -->
+                <div class="px-6 pb-6">
+                    <form onsubmit="sendChat(event)" class="flex gap-2">
+                        <input id="chat-input" type="text" placeholder="Escreva a sua pergunta..."
+                            class="flex-1 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark text-sm focus:ring-2 focus:ring-primary outline-none transition" />
+                        <button type="submit"
+                            class="bg-primary text-white px-5 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">
+                            <span class="material-symbols-outlined text-xl">send</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARAÇÃO DE MODELOS -->
+    <section class="py-24 bg-background-light dark:bg-background-dark reveal">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-3">LusoLLM vs.
+                    Modelo Genérico</h2>
+                <p class="text-slate-500">A mesma pergunta. Duas respostas muito diferentes.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800 text-center mb-8">
+                <span class="text-sm font-mono text-slate-600 dark:text-slate-300">Pergunta: "O que é o
+                    musseque?"</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div
+                    class="p-8 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-deep-charcoal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span
+                            class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><span
+                                class="material-symbols-outlined text-slate-400">smart_toy</span></span>
+                        <div>
+                            <p class="font-bold text-sm">Modelo Genérico</p>
+                            <p class="text-xs text-slate-400">GPT-style sem contexto lusófono</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed italic">"Musseque é uma palavra
+                        em língua banta que pode referir-se a areia ou terra vermelha. É também usado para descrever
+                        áreas residenciais..."</p>
+                    <div class="mt-4 flex items-center gap-2 text-xs text-red-500"><span
+                            class="material-symbols-outlined text-sm">warning</span> Resposta genérica, sem contexto
+                        cultural angolano</div>
+                </div>
+                <div
+                    class="p-8 rounded-2xl border-2 border-primary/40 bg-white dark:bg-deep-charcoal shadow-lg shadow-primary/5">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"><span
+                                class="material-symbols-outlined text-primary">psychology</span></span>
+                        <div>
+                            <p class="font-bold text-sm">LusoLLM</p>
+                            <p class="text-xs text-primary">Com contexto angolano e PALOP</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-200 text-sm leading-relaxed">"Musseque é o nome dado aos
+                        bairros periféricos de Luanda, Angola, historicamente habitados pelas camadas mais populares da
+                        cidade. Surgidos durante o período colonial, os musseques têm hoje uma identidade cultural
+                        fortíssima — são o berço do kuduro, da literatura de Luandino Vieira e da resistência popular. O
+                        termo vem do Kimbundu <em>mu seke</em> (na areia)."</p>
+                    <div class="mt-4 flex items-center gap-2 text-xs text-green-600"><span
+                            class="material-symbols-outlined text-sm">check_circle</span> Contexto histórico, cultural e
+                        linguístico correto</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECNOLOGIA -->
+    <section class="py-24 bg-deep-charcoal text-white overflow-hidden reveal">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div
+                        class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none">
+                    </div>
+                    <h2 class="font-serif-display text-4xl md:text-6xl font-black mb-8 leading-tight">Arquitetura <span
+                            class="text-accent-gold italic">Nzinga</span></h2>
+                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">Inspirada na resiliência da Rainha Nzinga
+                        Mbande, combina fine-tuning eficiente (QLoRA) com curadoria manual. Um modelo pequeno, rápido e
+                        culturalmente preciso.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-4"><span
+                                class="material-symbols-outlined text-accent-gold shrink-0">check_circle</span><span>Base:
+                                <code
+                                    class="font-mono text-sm bg-slate-800 px-2 py-1 rounded">TucanoBR/Tucano-1b1</code>
+                                fine-tunado com dados dos PALOP e Portugal</span></li>
+                        <li class="flex items-center gap-4"><span
+                                class="material-symbols-outlined text-accent-gold shrink-0">check_circle</span><span>Contexto:
+                                2048 tokens — otimizado para interações diretas e documentos curtos</span></li>
+                        <li class="flex items-center gap-4"><span
+                                class="material-symbols-outlined text-accent-gold shrink-0">check_circle</span><span>Licença:
+                                Apache 2.0 — livre para uso comercial e governamental</span></li>
+                    </ul>
+                    <a href="arquitetura.html"
+                        class="inline-block bg-gold-gradient text-white px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform">Explorar
+                        a Arquitetura</a>
+                </div>
+                <div class="relative flex justify-center">
+                    <div
+                        class="w-full aspect-square max-w-md bg-slate-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl rotate-3">
+                        <img alt="Rede Neural" class="w-full h-full object-cover mix-blend-overlay"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtkaamrSU15MLVEykxWZS2vZxJdC88rEsbUBeBM1wO6K4l4BVBWReHsnKngrT4ygk8I0rzjDzqsvA8Uc2RyMDyFnDonrzENaUFzGQ9Me7Qc9nGaM-xM-XEsyYP2Q2WlL9UI6ZByOGbdZVnZDrLBYtErGLgSibzNjZ0kUKJTczRx0jS0qPLZSIUW9t7VxDWm-CcLPslHzAvtdEpGc3casdhBC_1fy2zA6QtqH_RG5yAedUyVUdizLhZUX7IPiHS_eJ60hjV-kicUvo" />
+                        <div class="absolute inset-0 flex items-center justify-center"><span
+                                class="material-symbols-outlined text-9xl text-accent-gold/40">api</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP DE TREINO -->
+    <section class="py-24 bg-background-light dark:bg-background-dark reveal">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-14">
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-3">Progresso do
+                    Treino</h2>
+                <p class="text-slate-500">De zero a v1.0 — onde estamos agora.</p>
+            </div>
+            <!-- Progress bar visual -->
+            <div class="relative mb-16">
+                <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width:22%"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-xs text-slate-400">
+                    <span>Início</span><span>v0.1</span><span>v0.5</span><span>v1.0</span>
+                </div>
+                <div class="absolute top-0 left-[22%] -translate-x-1/2 -translate-y-6 whitespace-nowrap">
+                    <span class="bg-primary text-white text-xs px-2 py-1 rounded-full font-bold">Estamos aqui</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl bg-deep-charcoal text-white border border-primary/50 relative">
+                    <span
+                        class="absolute -top-3 left-6 bg-primary text-white text-xs px-3 py-1 rounded-full font-bold">Em
+                        curso</span>
+                    <p class="font-mono text-primary font-bold text-lg mt-2 mb-2">v0.1-alpha</p>
+                    <p class="text-slate-400 text-sm">Fine-tuning jurídico (DRE, PALOP). Validação interna. Dataset SFT
+                        de 50k exemplos.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-200 dark:border-slate-700">
+                    <p class="font-mono text-slate-500 font-bold text-lg mb-2">v0.5-beta</p>
+                    <p class="text-slate-400 text-sm">Expansão do corpus cultural. Benchmark público. Dataset SFT 200k+.
+                    </p>
+                    <p class="text-xs text-slate-400 mt-3">📅 Q3 2026</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-200 dark:border-slate-700">
+                    <p class="font-mono text-slate-500 font-bold text-lg mb-2">v1.0</p>
+                    <p class="text-slate-400 text-sm">Lançamento público. API REST. Suporte RAG. Integração
+                        governamental.</p>
+                    <p class="text-xs text-slate-400 mt-3">📅 Q1 2027</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CPLP — 9 países (bandeiras só aqui!) -->
+    <section id="cplp" class="py-24 bg-slate-50 dark:bg-deep-charcoal/50 reveal">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-14">
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-3">Os 9 da CPLP
+                </h2>
+                <p class="text-slate-500 max-w-xl mx-auto">Uma língua, nove nações, quatro continentes. O LusoLLM foi
+                    construído para todas elas.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-ao text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Angola"></span>
+                    <span class="font-bold text-sm">Angola</span>
+                    <span class="text-xs text-slate-400 text-center">Kimbundu · legislação · literatura</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-br text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Brasil"></span>
+                    <span class="font-bold text-sm">Brasil</span>
+                    <span class="text-xs text-slate-400 text-center">LexML · Wikipedia · GigaVerbo</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-cv text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Cabo Verde"></span>
+                    <span class="font-bold text-sm">Cabo Verde</span>
+                    <span class="text-xs text-slate-400 text-center">Crioulo cabo-verdiano · BO</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-gw text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Guiné-Bissau"></span>
+                    <span class="font-bold text-sm">Guiné-Bissau</span>
+                    <span class="text-xs text-slate-400 text-center">Legis-PALOP · educação</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-mz text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Moçambique"></span>
+                    <span class="font-bold text-sm">Moçambique</span>
+                    <span class="text-xs text-slate-400 text-center">Boletim da República · imprensa</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-pt text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Portugal"></span>
+                    <span class="font-bold text-sm">Portugal</span>
+                    <span class="text-xs text-slate-400 text-center">DRE · jurisprudência · Wikipedia PT</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-st text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="São Tomé e Príncipe"></span>
+                    <span class="font-bold text-sm">São Tomé e Príncipe</span>
+                    <span class="text-xs text-slate-400 text-center">DR santomense · Legis-PALOP</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-all group">
+                    <span class="fi fi-tl text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Timor-Leste"></span>
+                    <span class="font-bold text-sm">Timor-Leste</span>
+                    <span class="text-xs text-slate-400 text-center">Tétum · Jornal da República</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-slate-400/40 transition-all group col-span-2 sm:col-span-1">
+                    <span class="fi fi-gq text-5xl group-hover:-translate-y-1 transition-transform"
+                        aria-label="Guiné Equatorial"></span>
+                    <span class="font-bold text-sm">Guiné Equatorial</span>
+                    <span class="text-xs text-slate-400 text-center">Observador CPLP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPA -->
+    <section class="py-24 bg-background-light dark:bg-background-dark reveal">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-14">
+                <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-3">Quem Está a
+                    Construir</h2>
+                <p class="text-slate-500">Uma equipa distribuída pelos 4 continentes da lusofonia.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div
+                    class="text-center p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/30 transition-all">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent-gold mx-auto mb-4 flex items-center justify-center text-white text-2xl font-black font-serif-display">
+                        D</div>
+                    <p class="font-bold text-sm">Denio</p>
+                    <p class="text-xs text-slate-400">Fundador · Angola</p>
+                    <span class="fi fi-ao text-sm mt-2 inline-block"></span>
+                </div>
+                <div
+                    class="text-center p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/30 transition-all">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gradient-to-br from-slate-600 to-slate-800 mx-auto mb-4 flex items-center justify-center text-white text-2xl font-black font-serif-display">
+                        +</div>
+                    <p class="font-bold text-sm">Colaborador</p>
+                    <p class="text-xs text-slate-400">Linguística · Brasil</p>
+                    <span class="fi fi-br text-sm mt-2 inline-block"></span>
+                </div>
+                <div
+                    class="text-center p-6 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 hover:border-primary/30 transition-all">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gradient-to-br from-slate-600 to-slate-800 mx-auto mb-4 flex items-center justify-center text-white text-2xl font-black font-serif-display">
+                        +</div>
+                    <p class="font-bold text-sm">Colaborador</p>
+                    <p class="text-xs text-slate-400">Engenharia · Portugal</p>
+                    <span class="fi fi-pt text-sm mt-2 inline-block"></span>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-white dark:bg-deep-charcoal border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-primary transition-all cursor-pointer"
+                    onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+                    <div
+                        class="w-16 h-16 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-3xl">add</span>
+                    </div>
+                    <p class="font-bold text-sm text-primary">Junte-se a nós</p>
+                    <p class="text-xs text-slate-400">Contribua para o projecto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-24 bg-slate-50 dark:bg-deep-charcoal/50 reveal">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="font-serif-display text-4xl md:text-5xl font-black text-deep-charcoal dark:text-white mb-4">Fale
+                Connosco</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-12 text-lg">Parcerias, investigação académica ou
+                contribuições — estamos aqui.</p>
+            <form
+                class="bg-white dark:bg-deep-charcoal rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-8 md:p-12 text-left"
+                onsubmit="handleContact(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div><label class="block text-sm font-semibold mb-2" for="nome">Nome</label><input id="nome"
+                            type="text" required placeholder="O seu nome"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition" />
+                    </div>
+                    <div><label class="block text-sm font-semibold mb-2" for="email">Email</label><input id="email"
+                            type="email" required placeholder="email@exemplo.com"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition" />
+                    </div>
+                </div>
+                <div class="mb-6"><label class="block text-sm font-semibold mb-2" for="assunto">Sobre</label>
+                    <select id="assunto"
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition">
+                        <option>Parceria Institucional</option>
+                        <option>Colaboração Académica</option>
+                        <option>Imprensa</option>
+                        <option>Contribuir para o Projecto</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+                <div class="mb-8"><label class="block text-sm font-semibold mb-2"
+                        for="mensagem">Mensagem</label><textarea id="mensagem" rows="4" required
+                        placeholder="Descreva o seu interesse..."
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none transition resize-none"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary text-white py-4 rounded-lg font-bold text-lg hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-primary/20">Enviar
+                    Mensagem</button>
+                <p id="form-success" class="hidden text-green-600 text-center mt-4 font-semibold">✓ Mensagem recebida!
+                    Respondemos em breve.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-background-light dark:bg-background-dark py-20 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Bandeiras APENAS no footer -->
+            <div
+                class="flex flex-wrap justify-center items-center gap-4 mb-16 py-6 border-y border-slate-200 dark:border-slate-800">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">OS 9 DA CPLP</span>
+                <span class="fi fi-ao" style="font-size:1.6rem" title="Angola" aria-label="Angola" role="img"></span>
+                <span class="fi fi-br" style="font-size:1.6rem" title="Brasil" aria-label="Brasil" role="img"></span>
+                <span class="fi fi-cv" style="font-size:1.6rem" title="Cabo Verde" aria-label="Cabo Verde"
+                    role="img"></span>
+                <span class="fi fi-gw" style="font-size:1.6rem" title="Guiné-Bissau" aria-label="Guiné-Bissau"
+                    role="img"></span>
+                <span class="fi fi-mz" style="font-size:1.6rem" title="Moçambique" aria-label="Moçambique"
+                    role="img"></span>
+                <span class="fi fi-pt" style="font-size:1.6rem" title="Portugal" aria-label="Portugal"
+                    role="img"></span>
+                <span class="fi fi-st" style="font-size:1.6rem" title="São Tomé e Príncipe"
+                    aria-label="São Tomé e Príncipe" role="img"></span>
+                <span class="fi fi-tl" style="font-size:1.6rem" title="Timor-Leste" aria-label="Timor-Leste"
+                    role="img"></span>
+                <span class="fi fi-gq" style="font-size:1.6rem" title="Guiné Equatorial" aria-label="Guiné Equatorial"
+                    role="img"></span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6"><span
+                            class="material-symbols-outlined text-primary text-3xl">token</span><span
+                            class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white">NZINGA
+                            AI</span></div>
+                    <p class="text-slate-500 max-w-xs mb-8">Construindo a inteligência artificial que fala a nossa
+                        língua, respeita a nossa história e fortalece a nossa soberania.</p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub"
+                            class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all"><span
+                                class="material-symbols-outlined text-sm">code</span></a>
+                        <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
+                            aria-label="HuggingFace"
+                            class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all text-sm font-bold">🤗</a>
+                        <a href="mailto:contacto@nzinga.ai" aria-label="Email"
+                            class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all"><span
+                                class="material-symbols-outlined text-sm">alternate_email</span></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-deep-charcoal dark:text-white uppercase text-xs tracking-[0.2em]">
+                        RECURSOS</h4>
+                    <ul class="space-y-4 text-slate-500 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="modelo.html">Modelo LusoLLM</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="arquitetura.html">Arquitetura</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Blog de Engenharia</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="imprensa.html">Imprensa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-deep-charcoal dark:text-white uppercase text-xs tracking-[0.2em]">
+                        LEGAL</h4>
+                    <ul class="space-y-4 text-slate-500 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="privacidade.html">Privacidade</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="termos.html">Termos de Uso</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="etica.html">Ética de Dados</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="licencas.html">Licenças</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-400 text-xs">© 2026 NZINGA AI. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-2"><span
+                        class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span><span
+                        class="text-xs text-slate-400 font-medium">Datacenters: Luanda · Lisboa · Maputo · Brasília ·
+                        Cidade da Praia</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo"
+        class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-primary text-white shadow-lg shadow-primary/30 flex items-center justify-center opacity-0 pointer-events-none transition-all hover:scale-110">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <script>
+        // Dark mode
+        const html = document.documentElement;
+        document.getElementById('theme-toggle').addEventListener('click', () => { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { html.classList.add('dark'); }
+
+        // Mobile menu
+        document.getElementById('menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const bar = document.getElementById('scroll-bar');
+            const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            bar.style.width = pct + '%';
+            // Back to top
+            const btn = document.getElementById('back-top');
+            if (window.scrollY > 400) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; }
+            else { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; }
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }); }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Contact form
+        function handleContact(e) { e.preventDefault(); document.getElementById('form-success').classList.remove('hidden'); e.target.reset(); setTimeout(() => document.getElementById('form-success').classList.add('hidden'), 5000); }
+
+        // Playground
+        const presetQA = [
+            { q: "O que é o Diário da República?", a: "O Diário da República é o jornal oficial do Estado Português, publicado pelo Governo de Portugal, onde são publicados todos os atos legislativos, despachos, portarias e outras decisões com força de lei. Em Angola, o equivalente é o Diário da República Angolense, e em Moçambique o Boletim da República. Todos os países lusófonos têm equivalentes nacionais como instrumentos de comunicação oficial do Estado com os cidadãos." },
+            { q: "Quem foi a Rainha Nzinga?", a: "Nzinga Mbande (c. 1583–1663) foi rainha do Reino do Ndongo e Matamba, no atual território de Angola. Destacou-se como líder diplomata e guerreira que resistiu com determinação à expansão colonial portuguesa, alternando entre alianças e confrontações militares. Tornou-se símbolo global de resistência anticolonial, soberania africana e liderança feminina. O nome da nossa IA é uma homenagem direta à sua herança." },
+            { q: "Explica o crioulo cabo-verdiano.", a: "O crioulo cabo-verdiano (kriolu ou krioulo) é uma língua crioula de base portuguesa, falada como língua materna por quase toda a população de Cabo Verde. Existem duas variantes principais: o Sotavento (ilhas do sul, como Santiago) e o Barlavento (ilhas do norte, como São Vicente). O krioulo é parte central da identidade cultural cabo-verdiana — é a língua da morna, do batuque e da vida quotidiana, mesmo que o português seja a língua oficial. O LusoLLM inclui corpus específico em crioulo para respeitar esta diversidade." },
+            { q: "O que é a CPLP?", a: "A Comunidade dos Países de Língua Portuguesa (CPLP) é uma organização internacional fundada em 1996, que reúne 9 países que têm o português como língua oficial: Angola, Brasil, Cabo Verde, Guiné-Bissau, Guiné Equatorial, Moçambique, Portugal, São Tomé e Príncipe, e Timor-Leste. A CPLP representa mais de 260 milhões de pessoas em 4 continentes e é o quadro principal de cooperação cultural, educativa e política entre as nações lusófonas." }
+        ];
+
+        function askPreset(i) { addUserMsg(presetQA[i].q); setTimeout(() => addAIMsg(presetQA[i].a), 700); }
+
+        function sendChat(e) {
+            e.preventDefault();
+            const inp = document.getElementById('chat-input');
+            const q = inp.value.trim();
+            if (!q) return;
+            addUserMsg(q);
+            inp.value = '';
+            setTimeout(() => addAIMsg("Obrigado pela pergunta! Esta é uma demonstração do LusoLLM v0.1-alpha. Em produção, o modelo responderia com contexto lusófono profundo sobre \"" + q + "\". Subscreva a newsletter para ser notificado quando o acesso completo estiver disponível."), 800);
+        }
+
+        function addUserMsg(text) {
+            const box = document.getElementById('chat-box');
+            const d = document.createElement('div'); d.className = 'flex justify-end';
+            d.innerHTML = `<div class="chat-bubble-user">${text}</div>`;
+            box.appendChild(d); box.scrollTop = box.scrollHeight;
+        }
+
+        function addAIMsg(text) {
+            const box = document.getElementById('chat-box');
+            const d = document.createElement('div'); d.className = 'flex justify-start';
+            d.innerHTML = `<div class="chat-bubble-ai">${text}</div>`;
+            box.appendChild(d); box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>

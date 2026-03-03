@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Licenças | NZINGA AI</title>
+    <meta name="description" content="Informação sobre a licença Apache 2.0 do LusoLLM e direitos de uso." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#ec5b13", "accent-gold": "#c5a059", "deep-charcoal": "#1a1a1a", "background-light": "#fdfcfb", "background-dark": "#120d0b" }, fontFamily: { display: ["Playfair Display", "serif"], sans: ["Inter", "sans-serif"] } } } }</script>
+    <style>
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased">
+    <nav
+        class="sticky top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                <span
+                    class="font-serif-display text-2xl font-black tracking-tighter text-deep-charcoal dark:text-white">NZINGA
+                    AI</span>
+            </a>
+            <button id="theme-toggle" aria-label="Alternar tema"
+                class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                <span class="material-symbols-outlined text-xl hidden dark:inline text-yellow-400">light_mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="py-24 bg-deep-charcoal text-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-6">
+                <span class="material-symbols-outlined text-green-400 text-sm">verified</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-green-400">Código Aberto</span>
+            </div>
+            <h1 class="font-serif-display text-5xl md:text-7xl font-black mb-6">Licenças</h1>
+            <p class="text-xl text-slate-300 max-w-2xl">O LusoLLM é software livre. Veja abaixo o que pode fazer com
+                ele.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-background-light dark:bg-background-dark">
+        <div class="max-w-4xl mx-auto px-4 space-y-12">
+
+            <!-- Apache 2.0 principal -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-deep-charcoal border-2 border-green-500/30 shadow-sm">
+                <div class="flex items-start gap-6">
+                    <div class="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-3xl text-green-500">open_in_new</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h2 class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white">
+                                LusoLLM — Apache License 2.0</h2>
+                            <span
+                                class="text-xs bg-green-500/10 text-green-600 dark:text-green-400 px-2 py-1 rounded-full font-bold">Principal</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4">Aplica-se aos pesos do modelo, código de fine-tuning e
+                            scripts de dados.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <p class="font-bold text-green-600 dark:text-green-400 mb-2">✓ Permitido</p>
+                                <ul class="text-slate-500 space-y-1">
+                                    <li>Uso comercial</li>
+                                    <li>Uso governamental</li>
+                                    <li>Modificação e distribuição</li>
+                                    <li>Uso em produtos SaaS</li>
+                                    <li>Publicação académica</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-red-500 mb-2">✗ Obrigatório</p>
+                                <ul class="text-slate-500 space-y-1">
+                                    <li>Incluir a nota de copyright</li>
+                                    <li>Mencionar alterações feitas</li>
+                                    <li>Manter o ficheiro NOTICE</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-6 p-4 rounded-lg bg-slate-50 dark:bg-slate-800 font-mono text-xs text-slate-600 dark:text-slate-400">
+                            Copyright 2026 NZINGA AI<br />
+                            Licensed under the Apache License, Version 2.0<br />
+                            http://www.apache.org/licenses/LICENSE-2.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LusoLLM no HuggingFace -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-deep-charcoal border-2 border-green-500/30">
+                <h2 class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white mb-2">
+                    LusoLLM-1.1B-v1-LoRA</h2>
+                <p class="text-slate-500 text-sm mb-4">O modelo fine-tunado disponível publicamente no HuggingFace Hub,
+                    sob licença Apache 2.0.</p>
+                <a href="https://huggingface.co/DenioNG/LusoLLM-1.1B-v1-LoRA" target="_blank" rel="noopener"
+                    class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold hover:opacity-90 text-sm">
+                    <span>🤗</span> Ver no HuggingFace
+                </a>
+            </div>
+
+            <!-- Modelo base -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                <h2 class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white mb-2">Modelo Base —
+                    TucanoBR/Tucano-1b1</h2>
+                <p class="text-slate-500 text-sm mb-4">O LusoLLM parte do Tucano-1b1, publicado sob Apache 2.0 pela
+                    equipa do COMTEXT (Brasil).</p>
+                <a href="https://huggingface.co/TucanoBR/Tucano-1b1" target="_blank" rel="noopener"
+                    class="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:underline">
+                    <span class="material-symbols-outlined text-sm">open_in_new</span> Ver no HuggingFace
+                </a>
+            </div>
+
+            <!-- Dados de treino -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                <h2 class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white mb-2">Corpus de
+                    Treino</h2>
+                <p class="text-slate-500 text-sm mb-4">Os dados utilizados provêm de fontes de acesso público (Diários
+                    da República, Wikipedia PT, etc.) respeitando as suas licenças originais. A ficha de dados completa
+                    (data card) é publicada junto com cada versão do modelo.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                    <span class="px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">Domínio Público</span>
+                    <span class="px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">CC BY 4.0</span>
+                    <span class="px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">CC BY-SA 4.0</span>
+                    <span class="px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">Apache 2.0</span>
+                </div>
+            </div>
+
+            <!-- Dependências -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                <h2 class="font-serif-display text-2xl font-black text-deep-charcoal dark:text-white mb-4">Dependências
+                    de Software</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-200 dark:border-slate-700">
+                                <th class="text-left py-2 pr-4 text-slate-500 font-semibold">Biblioteca</th>
+                                <th class="text-left py-2 pr-4 text-slate-500 font-semibold">Licença</th>
+                                <th class="text-left py-2 text-slate-500 font-semibold">Uso</th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-400">
+                            <tr>
+                                <td class="py-3 pr-4 font-mono">transformers</td>
+                                <td class="py-3 pr-4">Apache 2.0</td>
+                                <td class="py-3">Inferência</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4 font-mono">unsloth</td>
+                                <td class="py-3 pr-4">Apache 2.0</td>
+                                <td class="py-3">Fine-tuning</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4 font-mono">peft</td>
+                                <td class="py-3 pr-4">Apache 2.0</td>
+                                <td class="py-3">QLoRA</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4 font-mono">pytorch</td>
+                                <td class="py-3 pr-4">BSD-3</td>
+                                <td class="py-3">Backend</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4 font-mono">flag-icons</td>
+                                <td class="py-3 pr-4">MIT</td>
+                                <td class="py-3">Interface web</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-background-light dark:bg-background-dark py-10 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-400 text-xs">© 2026 NZINGA AI. Todos os direitos reservados.</p>
+            <div class="flex gap-6 text-xs text-slate-500">
+                <a href="privacidade.html" class="hover:text-primary">Privacidade</a>
+                <a href="termos.html" class="hover:text-primary">Termos</a>
+                <a href="etica.html" class="hover:text-primary">Ética</a>
+            </div>
+        </div>
+    </footer>
+    <script>const h = document.documentElement; document.getElementById('theme-toggle').addEventListener('click', () => { h.classList.toggle('dark'); localStorage.setItem('theme', h.classList.contains('dark') ? 'dark' : 'light'); }); if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { h.classList.add('dark'); }</script>
+</body>
+
+</html>

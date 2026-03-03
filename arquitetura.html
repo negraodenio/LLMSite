@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-PT">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Arquitetura Técnica | NZINGA AI</title>
+    <meta name="description"
+        content="Arquitetura técnica do LusoLLM: QLoRA, Tucano-1b1, pipeline de dados, infraestrutura distribuída." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#ec5b13", "accent-gold": "#c5a059", "deep-charcoal": "#1a1a1a", "background-light": "#fdfcfb", "background-dark": "#120d0b" }, fontFamily: { display: ["Playfair Display", "serif"], sans: ["Inter", "sans-serif"] } } } }</script>
+    <style>
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+    <!-- NAV -->
+    <nav
+        class="sticky top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                <span
+                    class="font-serif-display text-2xl font-black tracking-tighter text-deep-charcoal dark:text-white">NZINGA
+                    AI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="modelo.html">Modelo</a>
+                <a class="text-sm font-medium text-primary font-bold" href="arquitetura.html">Tecnologia</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#cplp">CPLP</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Alternar tema"
+                    class="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-xl hidden dark:inline text-yellow-400">light_mode</span>
+                </button>
+                <a href="index.html#contacto"
+                    class="bg-deep-charcoal dark:bg-white text-white dark:text-deep-charcoal px-6 py-2 rounded-full text-sm font-bold hover:opacity-90">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="py-24 bg-deep-charcoal text-white relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-gold/10 border border-accent-gold/20 mb-6">
+                <span class="w-2 h-2 rounded-full bg-accent-gold"></span>
+                <span class="text-xs font-bold uppercase tracking-widest text-accent-gold">Documentação Técnica</span>
+            </div>
+            <h1 class="font-serif-display text-5xl md:text-7xl font-black mb-6 leading-tight">Arquitetura <span
+                    class="text-accent-gold italic">Nzinga</span></h1>
+            <p class="text-xl text-slate-300 max-w-2xl leading-relaxed">Como construímos um modelo pequeno, rápido e
+                culturalmente preciso — sem os recursos das Big Tech.</p>
+        </div>
+    </section>
+
+    <!-- PIPELINE DE DADOS -->
+    <section id="dados" class="py-20 bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-4">Pipeline de Dados
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-lg mb-12 max-w-2xl">O corpus lusófono é recolhido,
+                filtrado e curado em 4 fases antes de entrar no treino.</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-0">
+                <div
+                    class="relative p-6 bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 rounded-l-2xl md:rounded-r-none">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black text-xl mb-4">
+                        1</div>
+                    <h3 class="font-bold text-lg mb-2">Recolha</h3>
+                    <p class="text-slate-500 text-sm">Scrapers dos Diários da República, APIs legislativas, rádios
+                        comunitárias, Wikipedia PT.</p>
+                </div>
+                <div
+                    class="p-6 bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 border-l-0">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black text-xl mb-4">
+                        2</div>
+                    <h3 class="font-bold text-lg mb-2">Filtragem</h3>
+                    <p class="text-slate-500 text-sm">Deduplicação MinHash, remoção de HTML/boilerplate, deteção de
+                        língua por país.</p>
+                </div>
+                <div
+                    class="p-6 bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 border-l-0">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black text-xl mb-4">
+                        3</div>
+                    <h3 class="font-bold text-lg mb-2">Anotação SFT</h3>
+                    <p class="text-slate-500 text-sm">Geração de pares instrução/resposta com personas regionais usando
+                        APIs de LLM.</p>
+                </div>
+                <div
+                    class="p-6 bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800 border-l-0 rounded-r-2xl md:rounded-l-none">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black text-xl mb-4">
+                        4</div>
+                    <h3 class="font-bold text-lg mb-2">Treino QLoRA</h3>
+                    <p class="text-slate-500 text-sm">Fine-tuning com Unsloth + QLoRA 4-bit. Eficiente em GPUs de
+                        consumo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STACK TÉCNICA -->
+    <section class="py-20 bg-slate-50 dark:bg-deep-charcoal/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-serif-display text-4xl font-black text-deep-charcoal dark:text-white mb-12">Stack Técnica
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-4 block">model_training</span>
+                    <h3 class="font-bold text-lg mb-2">Modelo Base</h3>
+                    <code
+                        class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-primary">TucanoBR/Tucano-1b1</code>
+                    <p class="text-slate-500 text-sm mt-3">LLM brasileiro de 1.1B já pré-treinado em português. Ponto de
+                        partida ideal para fine-tuning lusófono.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-4 block">memory</span>
+                    <h3 class="font-bold text-lg mb-2">Fine-tuning</h3>
+                    <code
+                        class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-primary">Unsloth + QLoRA 4-bit</code>
+                    <p class="text-slate-500 text-sm mt-3">Treino eficiente com LoRA r=64 α=128. Reduz memória GPU em
+                        70% sem perda significativa de qualidade.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-4 block">storage</span>
+                    <h3 class="font-bold text-lg mb-2">Dados</h3>
+                    <code
+                        class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-primary">JSONL + SQLite corpus</code>
+                    <p class="text-slate-500 text-sm mt-3">Base de dados auditável por país. Rastreabilidade total da
+                        origem de cada exemplo de treino.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-4 block">hub</span>
+                    <h3 class="font-bold text-lg mb-2">Distribuição</h3>
+                    <code
+                        class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-primary">HuggingFace Hub</code>
+                    <p class="text-slate-500 text-sm mt-3">Modelo publicado com pesos abertos. Compatível com
+                        <code>transformers</code>, <code>llama.cpp</code>, <code>Ollama</code>.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-4 block">dns</span>
+                    <h3 class="font-bold text-lg mb-2">Inferência</h3>
+                    <code
+                        class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-primary">vLLM / Ollama</code>
+                    <p class="text-slate-500 text-sm mt-3">Datacenters em Luanda, Lisboa, Maputo e Brasília. Baixa
+                        latência para utilizadores da CPLP.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl bg-white dark:bg-deep-charcoal border border-slate-100 dark:border-slate-800">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-4 block">search</span>
+                    <h3 class="font-bold text-lg mb-2">RAG</h3>
+                    <code
+                        class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-primary">ChromaDB + embeddings PT</code>
+                    <p class="text-slate-500 text-sm mt-3">Retrieval-Augmented Generation para acesso a corpora
+                        jurídicos e documentais em tempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-background-light dark:bg-background-dark py-10 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-400 text-xs">© 2026 NZINGA AI. Todos os direitos reservados.</p>
+            <div class="flex gap-6 text-xs text-slate-500">
+                <a href="privacidade.html" class="hover:text-primary">Privacidade</a>
+                <a href="termos.html" class="hover:text-primary">Termos</a>
+                <a href="licencas.html" class="hover:text-primary">Licenças</a>
+            </div>
+        </div>
+    </footer>
+    <script>const h = document.documentElement; document.getElementById('theme-toggle').addEventListener('click', () => { h.classList.toggle('dark'); localStorage.setItem('theme', h.classList.contains('dark') ? 'dark' : 'light'); }); if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { h.classList.add('dark'); }</script>
+</body>
+
+</html>
